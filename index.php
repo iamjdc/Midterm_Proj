@@ -18,7 +18,7 @@ print_r(array_keys($_SESSION["cart_item"])) . "kjdsaksd";
 					foreach($_SESSION["cart_item"] as $k => $v) {
 
 
-							if($productByCode[0]["code"] == $k) {
+							if($productByCode[0]["ID"] == $k) {
 								if(empty($_SESSION["cart_item"][$k]["quantity"])) {
 									$_SESSION["cart_item"][$k]["quantity"] = 0;
 								}
@@ -37,7 +37,7 @@ print_r(array_keys($_SESSION["cart_item"])) . "kjdsaksd";
 	case "remove":
 		if(!empty($_SESSION["cart_item"])) {
 			foreach($_SESSION["cart_item"] as $k => $v) {
-					if($_GET["ID"] == $k)
+					if($_GET["code"] == $k)
 						unset($_SESSION["cart_item"][$k]);				
 					if(empty($_SESSION["cart_item"]))
 						unset($_SESSION["cart_item"]);
@@ -80,7 +80,7 @@ if(isset($_SESSION["cart_item"])){
 				<td style="text-align:left;border-bottom:#F0F0F0 1px solid;"><?php echo $item["stoneCut"]; ?></td>	
 				<td style="text-align:right;border-bottom:#F0F0F0 1px solid;"><?php echo $item["quantity"]; ?></td>
 				<td style="text-align:right;border-bottom:#F0F0F0 1px solid;"><?php echo "$".$item["price"]; ?></td>
-				<td style="text-align:center;border-bottom:#F0F0F0 1px solid;"><a href="index.php?action=remove&code=<?php echo $item["code"]; ?>" class="btnRemoveAction">Remove Item</a></td>
+				<td style="text-align:center;border-bottom:#F0F0F0 1px solid;"><a href="index.php?action=remove&code=<?php echo $item["ID"]; ?>" class="btnRemoveAction">Remove Item</a></td>
 				</tr>
 				<?php
         $item_total += ($item["price"]*$item["quantity"]);
