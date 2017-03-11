@@ -6,19 +6,17 @@ if(!empty($_GET["action"])) {
 switch($_GET["action"]) {
 	case "add":
 		if(!empty($_POST["quantity"])) {
-			$productByCode = $db_handle->runQuery("SELECT * FROM stoneLists WHERE ID ='" . $_GET["code"] . "'");
-			$itemArray = array($productByCode[0]["ID"]=>array('ID'=>$productByCode[0]["ID"],'stoneType'=>$productByCode[0]["stoneType"], 'stoneCut'=>$productByCode[0]["stoneCut"], 'quantity'=>$_POST["quantity"], 'price'=>$productByCode[0]["stonePrice"]));
+			$productByCode = $db_handle->runQuery("SELECT * FROM styleNumbers WHERE styleID ='" . $_GET["code"] . "'");
+			$mergeID= "ID" . $_GET["code"]; 
+			$itemArray = array($mergeID=>array('ID'=> $productByCode[0]["styleID"] ,'type'=> $productByCode[0]["type"], 'quantity'=>$_POST["quantity"], 'price'=>$productByCode[0]["stylePrice"]));
 			
-print_r(array_keys($_SESSION["cart_item"])) . "kjdsaksd";
-
-
 
 			if(!empty($_SESSION["cart_item"])) {
-				if(in_array($productByCode[0]["ID"],array_keys($_SESSION["cart_item"]))) {
+
+
+if(in_array($mergeID,array_keys($_SESSION["cart_item"]))) {
 					foreach($_SESSION["cart_item"] as $k => $v) {
-
-
-							if($productByCode[0]["ID"] == $k) {
+							if($mergeID == $k) {
 								if(empty($_SESSION["cart_item"][$k]["quantity"])) {
 									$_SESSION["cart_item"][$k]["quantity"] = 0;
 								}
@@ -27,17 +25,21 @@ print_r(array_keys($_SESSION["cart_item"])) . "kjdsaksd";
 					}
 				} else {
 					$_SESSION["cart_item"] = array_merge($_SESSION["cart_item"],$itemArray);
-
 				}
 			} else {
 				$_SESSION["cart_item"] = $itemArray;
 			}
 		}
+
+
+
+
 	break;
 	case "remove":
 		if(!empty($_SESSION["cart_item"])) {
 			foreach($_SESSION["cart_item"] as $k => $v) {
-					if($_GET["code"] == $k)
+					$removeID= "ID".$_GET["code"] ;
+					if($removeID == $k)
 						unset($_SESSION["cart_item"][$k]);				
 					if(empty($_SESSION["cart_item"]))
 						unset($_SESSION["cart_item"]);
@@ -66,7 +68,6 @@ if(isset($_SESSION["cart_item"])){
 <tbody>
 <tr>
 <th style="text-align:left;"><strong>Name</strong></th>
-<th style="text-align:left;"><strong>Code</strong></th>
 <th style="text-align:right;"><strong>Quantity</strong></th>
 <th style="text-align:right;"><strong>Price</strong></th>
 <th style="text-align:center;"><strong>Action</strong></th>
@@ -75,20 +76,25 @@ if(isset($_SESSION["cart_item"])){
     foreach ($_SESSION["cart_item"] as $item){
 		?>
 				<tr>
-				<td style="text-align:left;border-bottom:#F0F0F0 1px solid;"><?php echo $item["ID"]; ?></td>
-				<td style="text-align:left;border-bottom:#F0F0F0 1px solid;"><?php echo $item["stoneType"]; ?></td>
-				<td style="text-align:left;border-bottom:#F0F0F0 1px solid;"><?php echo $item["stoneCut"]; ?></td>	
+				<td style="text-align:left;border-bottom:#F0F0F0 1px solid;"><?php echo $item["ID"]; ?></td>	
 				<td style="text-align:right;border-bottom:#F0F0F0 1px solid;"><?php echo $item["quantity"]; ?></td>
 				<td style="text-align:right;border-bottom:#F0F0F0 1px solid;"><?php echo "$".$item["price"]; ?></td>
 				<td style="text-align:center;border-bottom:#F0F0F0 1px solid;"><a href="index.php?action=remove&code=<?php echo $item["ID"]; ?>" class="btnRemoveAction">Remove Item</a></td>
 				</tr>
 				<?php
         $item_total += ($item["price"]*$item["quantity"]);
+	$_SESSION["Total"] = $item_total;
 		}
 		?>
 
 <tr>
-<td colspan="5" align=right><strong>Total:</strong> <?php echo "$".$item_total; ?></td>
+<td colspan="5" align=right><strong>Total:</strong> <?php echo "$".$item_total; ?></td> <td>
+
+
+<form method="post" action="submitpo.php">
+
+			<input type="submit" value="Check out" />
+			</form></td>
 </tr>
 </tbody>
 </table>		
@@ -100,15 +106,16 @@ if(isset($_SESSION["cart_item"])){
 <div id="product-grid">
 	<div class="txt-heading">Products</div>
 	<?php
-	$product_array = $db_handle->runQuery("SELECT * FROM stoneLists ORDER BY ID ASC");
+	$product_array = $db_handle->runQuery("SELECT * FROM styleNumbers ORDER BY styleID, type ASC");
 	if (!empty($product_array)) { 
 		foreach($product_array as $key=>$value){
 	?>
 		<div class="product-item">
-			<form method="post" action="index.php?action=add&code=<?php echo $product_array[$key]["ID"]; ?>">
+			<form method="post" action="index.php?action=add&code=<?php echo $product_array[$key]["styleID"]; ?>">
 			
 			<div><strong><?php echo $product_array[$key]["stoneType"]; ?></strong></div>
-			<div class="product-price"><?php echo "$".$product_array[$key]["stonePrice"]; ?></div>
+			<div><strong><?php echo $product_array[$key]["styleNumber"]; ?></strong></div>
+			<div class="product-price"><?php echo "$".$product_array[$key]["stylePrice"]; ?></div>
 			<div><input type="text" name="quantity" value="1" size="2" /><input type="submit" value="Add to cart" class="btnAddAction" /></div>
 			</form>
 		</div>

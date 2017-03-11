@@ -31,7 +31,7 @@ public function addStone($stoneType,$stonePrice, $stoneCut, $stoneQty)
 	$SC = $stoneCut;
 	$SQ = $stoneQty;
 
-	$sql = "insert into stoneLists(stoneType, stonePrice, stoneCut, stoneQty) VALUES ('$ST','$SP','$SC','$SQ');";
+	$sql = "insert into styleNumbers(stoneType, stylePrice, stoneCut, styleQty,type) VALUES ('$ST','$SP','$SC','$SQ','Stone');";
 
 
 	if (!$this->db->query($sql))
@@ -47,25 +47,25 @@ public function editStone($stoneId)
 
 	$SI = $stoneId;
 
-	$sql = "select * from stoneLists where id =" . $SI.";";
+	$sql = "select * from styleNumbers where styleid =" . $SI.";";
 	$result = $this->db->query($sql);
 	
 	return $result;
 }
-public function editStoneSubmit($stoneID,$stoneType,$stonePrice, $stoneCut, $stoneQty)
+public function editStoneSubmit($styleID,$stoneType,$stylePrice, $stoneCut, $styleQty)
 {
-	$SI= $stoneID;
+	$SI= $styleID;
 	$ST = $stoneType;
-	$SP = $stonePrice;
+	$SP = $stylePrice;
 	$SC = $stoneCut;
-	$SQ = $stoneQty;
+	$SQ = $styleQty;
 
 
-		$sql = "update stoneLists set stoneType = \"".$ST."\",
-					      stonePrice = $SP,
+		$sql = "update styleNumbers set stoneType = \"".$ST."\",
+					      stylePrice = $SP,
 					      stoneCut = \"".$SC."\",
-					      stoneQty = $SQ
-					      where id =" . $SI.";";
+					      styleQty = $SQ
+					      where styleID =" . $SI.";";
 
 
 	if (!$this->db->query($sql))
@@ -83,7 +83,7 @@ public function deleteStone($stoneID)
 {
 	$SD = $stoneID;
 
-	$sql= "delete from stoneLists where ID = " . $SD.";";
+	$sql= "delete from styleNumbers where styleID = " . $SD.";";
 
 
 	if (!$this->db->query($sql))

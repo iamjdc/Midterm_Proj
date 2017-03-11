@@ -43,9 +43,9 @@ ini_set('display_errors', 1);
 		  <option value="Ring"> Ring </option>
 		 <option value="Necklace"> Necklace </option>
 		 <option value="Earrings"> Earrings </option></select></p>
-    <p>Stone Price: <input type="text" name="SP" /></p>
+    <p>Price: <input type="text" name="SP" /></p>
     
-    <p>Stone Qty: <input type="text" name="SQ" /></p>
+    <p>Qty: <input type="text" name="SQ" /></p>
       <p><input name="submit" value="Submit" type="submit"/></p>
 
 </body>

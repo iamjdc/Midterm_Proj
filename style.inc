@@ -31,7 +31,7 @@ public function addstyle($styleNumber,$metalType,$styleType,$stylePrice, $styleQ
 	$SP = $stylePrice;
 		$SQ = $styleQty;
 
-	$sql = "insert into styleNumbers(styleNumber, metalType, styleType, stylePrice, styleQty) VALUES ('$SN', '$MT','$ST','$SP','$SQ');";
+	$sql = "insert into styleNumbers(styleNumber, metalType, styleType, stylePrice, styleQty, type) VALUES ('$SN', '$MT','$ST','$SP','$SQ', 'Jewelry');";
 
 echo $sql;
 	if (!$this->db->query($sql))

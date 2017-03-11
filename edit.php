@@ -38,7 +38,7 @@ ini_set('display_errors', 1);
    <a href="admin.php">Return to Admin Page</a>
     <form action="" method="post">
     <p>Stone Type: <input type="text" name="ST" value= "<?php echo $row["stoneType"]; ?>" /></p>
-    <p>Stone Price: <input type="text" name="SP" value= "<?php echo $row["stonePrice"]; ?>"  /></p>
+    <p>Stone Price: <input type="text" name="SP" value= "<?php echo $row["stylePrice"]; ?>"  /></p>
     <p>Stone Cut: <select name="SC">
 		  <option value="Round" <?php if( $row["stoneCut"] == "Round") echo "selected=\"selected\"";    ?>> Round </option>
 		  <option value="Square" <?php if( $row["stoneCut"] == "Square") echo "selected=\"selected\"";    ?>> Square </option>
@@ -46,7 +46,7 @@ ini_set('display_errors', 1);
 		 <option value="Emerald"<?php if( $row["stoneCut"] == "Emerald") echo "selected=\"selected\"";    ?>> Emerald </option>
 		 <option value="Heart"<?php if( $row["stoneCut"] == "Heart") echo "selected=\"selected\"";    ?>> Heart </option>
 		 <option value="Rectangle"<?php if( $row["stoneCut"] == "Rectangle") echo "selected=\"selected\"";    ?>> Rectangle</option></select></p>
-    <p>Stone Qty: <input type="text" name="SQ" value= "<?php echo $row["stoneQty"]; ?>"/></p>
+    <p>Stone Qty: <input type="text" name="SQ" value= "<?php echo $row["styleQty"]; ?>"/></p>
       <p><input name="submit" value="Submit" type="submit"/></p>
 
 </body>

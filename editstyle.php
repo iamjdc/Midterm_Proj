@@ -29,6 +29,7 @@ ini_set('display_errors', 1);
 	echo "Style Record Edited";
 	$Purchase = new Style();
 	$Purchase->editstyleSubmit($formId, $snn, $mtt, $stt, $spp, $sqq);
+	header("Location: admin.php");
 	} }
 
 ?></h1>
@@ -45,9 +46,9 @@ ini_set('display_errors', 1);
 		  <option value="Ring"<?php if( $row["styleType"] == "Ring") echo "selected=\"selected\"";    ?>> Ring </option>
 		 <option value="Necklace"<?php if( $row["styleType"] == "Necklace") echo "selected=\"selected\"";    ?>> Necklace </option>
 		 <option value="Earrings"<?php if( $row["styleType"] == "Earrings") echo "selected=\"selected\"";    ?>> Earrings </option></select></p>
-    <p>Stone Price: <input type="text" name="SP"value= "<?php echo $row["stylePrice"]; ?>" /></p>
+    <p>Price: <input type="text" name="SP"value= "<?php echo $row["stylePrice"]; ?>" /></p>
     
-    <p>Stone Qty: <input type="text" name="SQ" value= "<?php echo $row["styleQty"]; ?>" /></p>
+    <p>Qty: <input type="text" name="SQ" value= "<?php echo $row["styleQty"]; ?>" /></p>
       <p><input name="submit" value="Submit" type="submit"/></p>
 
 </body>
