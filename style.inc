@@ -33,7 +33,7 @@ public function addstyle($styleNumber,$metalType,$styleType,$stylePrice, $styleQ
 
 	$sql = "insert into styleNumbers(styleNumber, metalType, styleType, stylePrice, styleQty, type) VALUES ('$SN', '$MT','$ST','$SP','$SQ', 'Jewelry');";
 
-echo $sql;
+
 	if (!$this->db->query($sql))
 		{
 			echo "Failed to insert record for $styleType".PHP_EOL;

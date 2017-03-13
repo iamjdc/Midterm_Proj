@@ -23,7 +23,7 @@ if (!isset($_POST['submit'])){
 	$password = $_POST['password'];
 
 	$sql = "SELECT * from userAccounts WHERE username LIKE '{$username}' AND password LIKE '{$password}' LIMIT 1";
-	$result = $mysqli->query($sql);
+	$result = $conn->query($sql);
 	if (!$result->num_rows == 1) {
 		echo "<p>Invalid username/password combination</p>";
 	} else {

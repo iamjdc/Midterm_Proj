@@ -24,6 +24,4 @@ header('Refresh: 3; index.php');
 }
 
 
-
-
 ?>

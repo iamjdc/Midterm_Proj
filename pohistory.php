@@ -23,7 +23,7 @@ ini_set('display_errors', 1);
 require_once("connect.inc");
 
 $sql = "SELECT * from poLists";
-$result = $mysqli->query($sql);
+$result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo "<table><tr><th>ID</th><th>PO Date </th><th>Final Cost</th><th> Detail </th></tr>";
@@ -32,7 +32,7 @@ if ($result->num_rows > 0) {
         echo "<tr>
 		<td>".$row["poID"]."</td>
 		<td>".$row["poDate"]."</td>
-		<td> ".$row["poFinal"]."</td>
+		<td> $".$row["poFinal"]."</td>
 		<td> <a href= podetail.php?id=" . $row["poID"] . ">Detail</a></td>
 
 
@@ -43,5 +43,5 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
-$mysqli->close();
+$conn->close();
 ?>
