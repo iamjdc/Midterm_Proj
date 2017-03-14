@@ -36,7 +36,7 @@ public function addStone($stoneType,$stonePrice, $stoneCut, $stoneQty)
 
 	if (!$this->db->query($sql))
 		{
-			echo "Failed to insert record for $stoneType".PHP_EOL;
+			echo " <div>Failed to insert record for $stoneType".PHP_EOL ."</div>";
 		}
 
 			
@@ -70,7 +70,11 @@ public function editStoneSubmit($styleID,$stoneType,$stylePrice, $stoneCut, $sty
 
 	if (!$this->db->query($sql))
 			{
-				echo "Failed to insert record for $stoneType".PHP_EOL;
+				echo " <div>Failed to insert record for $stoneType".PHP_EOL ."</div>";
+				
+			} else{
+				echo "<div><h1><font color =\"red\">Record Changed </font></h1></div>";
+
 			}
 
 	
@@ -88,7 +92,7 @@ public function deleteStone($stoneID)
 
 	if (!$this->db->query($sql))
 			{
-				echo "Failed to insert record for $stoneType".PHP_EOL;
+				echo " <div>Failed to insert record for $stoneType".PHP_EOL ."</div>";
 			}
 
 

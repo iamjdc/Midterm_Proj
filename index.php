@@ -8,7 +8,7 @@ switch($_GET["action"]) {
 		if(!empty($_POST["quantity"])) {
 			$productByCode = $db_handle->runQuery("SELECT * FROM styleNumbers WHERE styleID ='" . $_GET["code"] . "'");
 			$mergeID= "ID" . $_GET["code"]; 
-			$itemArray = array($mergeID=>array('ID'=> $productByCode[0]["styleID"] ,'type'=> $productByCode[0]["type"], 'quantity'=>$_POST["quantity"], 'price'=>$productByCode[0]["stylePrice"]));
+			$itemArray = array($mergeID=>array('ID'=> $productByCode[0]["styleID"] , 'ST1'=> $productByCode[0]["stoneType"],'ST2'=> $productByCode[0]["styleNumber"],'type'=> $productByCode[0]["type"], 'quantity'=>$_POST["quantity"], 'price'=>$productByCode[0]["stylePrice"]));
 			
 
 			if(!empty($_SESSION["cart_item"])) {
@@ -66,7 +66,7 @@ if(isset($_SESSION["cart_item"])){
 ?>	
 <table cellpadding="10" cellspacing="1">
 <tbody>
-<tr>
+<tr><th style="text-align:left;"><strong>ID</strong></th>
 <th style="text-align:left;"><strong>Name</strong></th>
 <th style="text-align:right;"><strong>Quantity</strong></th>
 <th style="text-align:right;"><strong>Price</strong></th>
@@ -76,7 +76,8 @@ if(isset($_SESSION["cart_item"])){
     foreach ($_SESSION["cart_item"] as $item){
 		?>
 				<tr>
-				<td style="text-align:left;border-bottom:#F0F0F0 1px solid;"><?php echo $item["ID"]; ?></td>	
+				<td style="text-align:left;border-bottom:#F0F0F0 1px solid;"><?php echo $item["ID"]; ?></td>
+				<td style="text-align:right;border-bottom:#F0F0F0 1px solid;"><?php echo $item["ST1"];echo $item["ST2"]; ?></td>	
 				<td style="text-align:right;border-bottom:#F0F0F0 1px solid;"><?php echo $item["quantity"]; ?></td>
 				<td style="text-align:right;border-bottom:#F0F0F0 1px solid;"><?php echo "$".$item["price"]; ?></td>
 				<td style="text-align:center;border-bottom:#F0F0F0 1px solid;"><a href="index.php?action=remove&code=<?php echo $item["ID"]; ?>" class="btnRemoveAction">Remove Item</a></td>
@@ -109,17 +110,19 @@ if(isset($_SESSION["cart_item"])){
 	$product_array = $db_handle->runQuery("SELECT * FROM styleNumbers ORDER BY styleID, type ASC");
 	if (!empty($product_array)) { 
 		foreach($product_array as $key=>$value){
+			if ($product_array[$key]["styleQty"] >0 ){
 	?>
 		<div class="product-item">
 			<form method="post" action="index.php?action=add&code=<?php echo $product_array[$key]["styleID"]; ?>">
 			
 			<div><strong><?php echo $product_array[$key]["stoneType"]; ?></strong></div>
 			<div><strong><?php echo $product_array[$key]["styleNumber"]; ?></strong></div>
+			<div><strong><?php echo "Avaliable : " . $product_array[$key]["styleQty"]; ?></strong></div>
 			<div class="product-price"><?php echo "$".$product_array[$key]["stylePrice"]; ?></div>
 			<div><input type="text" name="quantity" value="1" size="2" /><input type="submit" value="Add to cart" class="btnAddAction" /></div>
 			</form>
 		</div>
-	<?php
+	<?php }
 			}
 	}
 	?>

@@ -23,15 +23,12 @@ ini_set('display_errors', 1);
 	
 	if ($stt==''||$spp ==''||$scc=='' ||$sqq==''){
 	
-	echo "Soemthing isnt working!";
+	echo "<div><h1><font color =\"red\">Soemthing isnt working!</font></h1></div>";
 	}else{
-	echo "Record Changed";
-	$Purchase = new Stone();
 	
-
-
-
+	$Purchase = new Stone();
 	$Purchase->editStoneSubmit($formId,$stt,$spp,$scc, $sqq);
+	
 	} }
 
 ?></h1>

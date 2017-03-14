@@ -24,9 +24,9 @@ ini_set('display_errors', 1);
 
 	if ($snn==''||$mtt==''||$spp ==''||$stt=='' ||$sqq==''){
 	
-	echo "Soemthing isnt working!";
+		echo "<div><h1><font color =\"red\">Soemthing isnt working!</font></h1></div>";
 	}else{
-	echo "Style Record Edited";
+	
 	$Purchase = new Style();
 	$Purchase->editstyleSubmit($formId, $snn, $mtt, $stt, $spp, $sqq);
 	header("Location: admin.php");

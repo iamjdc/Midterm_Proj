@@ -5,6 +5,7 @@
 <body>
 <h1>JDC Groupe Admin Login</h1>
 <?php
+session_start();
 if (!isset($_POST['submit'])){
 ?>
 <!-- The HTML login form -->
@@ -28,6 +29,7 @@ if (!isset($_POST['submit'])){
 		echo "<p>Invalid username/password combination</p>";
 	} else {
 		echo "<p>Logged in successfully</p>";
+		$_SESSION['username'] = $username;
 	header("Location: admin.php");
 		
 	}

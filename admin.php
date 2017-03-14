@@ -19,7 +19,7 @@ tr:nth-child(even) {
 <?php
 
 
-include("connect.inc");
+include("session.php");
 
 
 $sql = "SELECT * from styleNumbers";

@@ -73,6 +73,9 @@ public function editstyleSubmit($styleID,$styleNumber, $metalType, $styleType,$s
 	if (!$this->db->query($sql))
 			{
 				echo "Failed to insert record for $styleType".PHP_EOL;
+			}else{
+				echo "<div><h1><font color =\"red\">Record Changed </font></h1></div>";
+
 			}
 
 	
