@@ -78,7 +78,7 @@ if($row["type"] == "Jewelry"){
 </tr>";
 }
     }
-    echo "</table>";
+    echo "<tr> <td><a href= pohistory.php> PO List</a></td> </table>";
 } else {
 	echo "<br> <br>";
     echo "<table><tr><th>ID</th><th>Style Number </th><th>Metal Type</th><th>Style Type</th><th>Style Qty</th><th>Style Price</th><th> Edit </th><th>Delete </th></tr>";

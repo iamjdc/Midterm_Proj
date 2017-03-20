@@ -22,6 +22,6 @@ $db_handle->runQuery("update styleNumbers set styleQty = styleQty-".$item["quant
 
 }
 echo "Thank you ! Your order has been accepted!";
-header('Refresh: 3; index.php');
+header('Refresh: 3; index.php?action=empty');
 
 ?>

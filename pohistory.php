@@ -39,7 +39,7 @@ if ($result->num_rows > 0) {
 
 </tr>";
     }
-    echo "</table>";
+    echo "</table> <table> <tr><td><a href= admin.php?>Return to Admin</a></td></table>";
 } else {
     echo "0 results";
 }

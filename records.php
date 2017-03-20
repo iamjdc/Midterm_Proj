@@ -21,7 +21,7 @@ ini_set('display_errors', 1);
 	
 	if ($stt==''||$spp ==''||$scc=='' ||$sqq==''){
 	
-	echo "Soemthing isnt working!";
+	echo "Soemthing isnt working!Please fill in the blanks";
 	}else{
 	echo "Stone added";
 	$Purchase = new Stone();

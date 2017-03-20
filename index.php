@@ -54,7 +54,7 @@ if(in_array($mergeID,array_keys($_SESSION["cart_item"]))) {
 ?>
 <HTML>
 <HEAD>
-<TITLE>Simple PHP Shopping Cart</TITLE>
+<TITLE>JDC Groupe Website</TITLE>
 <link href="style.css" type="text/css" rel="stylesheet" />
 </HEAD>
 <BODY>
@@ -114,11 +114,21 @@ if(isset($_SESSION["cart_item"])){
 	?>
 		<div class="product-item">
 			<form method="post" action="index.php?action=add&code=<?php echo $product_array[$key]["styleID"]; ?>">
-			
-			<div><strong><?php echo $product_array[$key]["stoneType"]; ?></strong></div>
-			<div><strong><?php echo $product_array[$key]["styleNumber"]; ?></strong></div>
-			<div><strong><?php echo "Avaliable : " . $product_array[$key]["styleQty"]; ?></strong></div>
+			<?php if ($product_array[$key]["type"] == "Stone"){ ?>
+				<div><strong><?php echo "Stone: ". $product_array[$key]["stoneType"]; ?></strong></div>
+				<div><strong><?php echo "Stone Cut: ".$product_array[$key]["stoneCut"]; ?></strong></div>
+				<div><strong><?php echo "Avaliable : " . $product_array[$key]["styleQty"]; ?></strong></div>
+				<div class="product-price"><?php echo "$".$product_array[$key]["stylePrice"]; ?></div>
+
+<?php }else { ?>
+			<div><strong><?php echo "Style: ".$product_array[$key]["styleNumber"]; ?></strong></div>			
+			<div><strong><?php echo "Style Type: ".$product_array[$key]["styleType"]; ?></strong></div>
+			<div><strong><?php echo "Metal Type: ".$product_array[$key]["metalType"]; ?></strong></div>
+			<div><strong><?php echo "Available : " . $product_array[$key]["styleQty"]; ?></strong></div>
 			<div class="product-price"><?php echo "$".$product_array[$key]["stylePrice"]; ?></div>
+
+<?php   } ?>
+			
 			<div><input type="text" name="quantity" value="1" size="2" /><input type="submit" value="Add to cart" class="btnAddAction" /></div>
 			</form>
 		</div>

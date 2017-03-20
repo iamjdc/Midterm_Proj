@@ -22,7 +22,7 @@ ini_set('display_errors', 1);
 
 	if ($snn==''||$mtt==''||$spp ==''||$stt=='' ||$sqq==''){
 	
-	echo "Soemthing isnt working!";
+	echo "Soemthing isnt working! Please fill in the blanks";
 	}else{
 	echo "Style added";
 	$Purchase = new Style();
