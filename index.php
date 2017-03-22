@@ -107,7 +107,7 @@ if(isset($_SESSION["cart_item"])){
 <div id="product-grid">
 	<div class="txt-heading">Products</div>
 	<?php
-	$product_array = $db_handle->runQuery("SELECT * FROM styleNumbers ORDER BY styleID, type ASC");
+	$product_array = $db_handle->runQuery("SELECT * FROM styleNumbers ORDER BY type ASC");
 	if (!empty($product_array)) { 
 		foreach($product_array as $key=>$value){
 			if ($product_array[$key]["styleQty"] >0 ){
