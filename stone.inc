@@ -22,7 +22,7 @@ public function __destruct()
 
 
 
-public function addStone($stoneType,$stonePrice, $stoneCut, $stoneQty)
+public function addStone($stoneType,$stonePrice, $stoneCut, $stoneQty, $vendor)
 
 {
 
@@ -30,8 +30,9 @@ public function addStone($stoneType,$stonePrice, $stoneCut, $stoneQty)
 	$SP = $stonePrice;
 	$SC = $stoneCut;
 	$SQ = $stoneQty;
+	$v = $vendor;
 
-	$sql = "insert into styleNumbers(stoneType, stylePrice, stoneCut, styleQty,type) VALUES ('$ST','$SP','$SC','$SQ','Stone');";
+	$sql = "insert into styleNumbers(stoneType, stylePrice, stoneCut, styleQty,type, vendor) VALUES ('$ST','$SP','$SC','$SQ','Stone','$v');";
 
 
 	if (!$this->db->query($sql))
@@ -52,19 +53,21 @@ public function editStone($stoneId)
 	
 	return $result;
 }
-public function editStoneSubmit($styleID,$stoneType,$stylePrice, $stoneCut, $styleQty)
+public function editStoneSubmit($styleID,$stoneType,$stylePrice, $stoneCut, $styleQty, $vendor)
 {
 	$SI= $styleID;
 	$ST = $stoneType;
 	$SP = $stylePrice;
 	$SC = $stoneCut;
 	$SQ = $styleQty;
+$v=$vendor;
 
 
 		$sql = "update styleNumbers set stoneType = \"".$ST."\",
 					      stylePrice = $SP,
 					      stoneCut = \"".$SC."\",
-					      styleQty = $SQ
+					      styleQty = $SQ,
+					      vendor = \"".$v."\"
 					      where styleID =" . $SI.";";
 
 

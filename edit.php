@@ -1,6 +1,6 @@
 <?php
 include("stone.inc");
-
+include("connect.inc");
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 	$formId = $_GET['id'];
@@ -20,14 +20,14 @@ ini_set('display_errors', 1);
 	$spp = htmlentities($_POST['SP'], ENT_QUOTES);
 	$scc = htmlentities($_POST['SC'], ENT_QUOTES);
 	$sqq = htmlentities($_POST['SQ'], ENT_QUOTES);
-	
+		$v = htmlentities($_POST['vendor'], ENT_QUOTES);
 	if ($stt==''||$spp ==''||$scc=='' ||$sqq==''){
 	
 	echo "<div><h1><font color =\"red\">Soemthing isnt working!</font></h1></div>";
 	}else{
 	
 	$Purchase = new Stone();
-	$Purchase->editStoneSubmit($formId,$stt,$spp,$scc, $sqq);
+	$Purchase->editStoneSubmit($formId,$stt,$spp,$scc, $sqq, $v);
 	
 	} }
 
@@ -44,6 +44,23 @@ ini_set('display_errors', 1);
 		 <option value="Heart"<?php if( $row["stoneCut"] == "Heart") echo "selected=\"selected\"";    ?>> Heart </option>
 		 <option value="Rectangle"<?php if( $row["stoneCut"] == "Rectangle") echo "selected=\"selected\"";    ?>> Rectangle</option></select></p>
     <p>Stone Qty: <input type="text" name="SQ" value= "<?php echo $row["styleQty"]; ?>"/></p>
+	<?php $sql = mysqli_query($conn, "SELECT * FROM vendors");
+ echo "<p>Vendor: <select name=\"vendor\">";
+  while ($row = $sql->fetch_assoc()) {
+
+                  unset($id, $name);
+                  $id = $row['id'];
+                  $vendor = $row['vendor']; 
+		
+                  echo '<option value="'.$vendor.'">'.$vendor.'</option>';
+
+}
+
+?>
+</select>
+
+
+
       <p><input name="submit" value="Submit" type="submit"/></p>
 
 </body>

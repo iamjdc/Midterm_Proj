@@ -22,7 +22,7 @@ public function __destruct()
 
 
 
-public function addstyle($styleNumber,$metalType,$styleType,$stylePrice, $styleQty)
+public function addstyle($styleNumber,$metalType,$styleType,$stylePrice, $styleQty,$vendor)
 
 {
 	$SN = $styleNumber;
@@ -30,12 +30,14 @@ public function addstyle($styleNumber,$metalType,$styleType,$stylePrice, $styleQ
 	$ST = $styleType;
 	$SP = $stylePrice;
 		$SQ = $styleQty;
+		$v= $vendor;
 
-	$sql = "insert into styleNumbers(styleNumber, metalType, styleType, stylePrice, styleQty, type) VALUES ('$SN', '$MT','$ST','$SP','$SQ', 'Jewelry');";
+
+	$sql = "insert into styleNumbers(styleNumber, metalType, styleType, stylePrice, styleQty, type, vendor) VALUES ('$SN', '$MT','$ST','$SP','$SQ', 'Jewelry', '$v');";
 
 
 	if (!$this->db->query($sql))
-		{
+		{	
 			echo "Failed to insert record for $styleType".PHP_EOL;
 		}
 
@@ -52,7 +54,7 @@ public function editstyle($styleId)
 	
 	return $result;
 }
-public function editstyleSubmit($styleID,$styleNumber, $metalType, $styleType,$stylePrice, $styleQty)
+public function editstyleSubmit($styleID,$styleNumber, $metalType, $styleType,$stylePrice, $styleQty, $vendor)
 {
 	$SI= $styleID;
 	$SN = $styleNumber;
@@ -60,13 +62,14 @@ public function editstyleSubmit($styleID,$styleNumber, $metalType, $styleType,$s
 	$SP = $stylePrice;
 	$MT = $metalType;
 	$SQ = $styleQty;
-
+	$v = $vendor;
 
 		$sql = "update styleNumbers set styleType = \"".$ST."\",
 					      stylePrice = $SP,
 					      styleNumber = \"".$SN."\",
 					      metalType = \"".$MT."\",
-					      styleQty = $SQ
+					      styleQty = $SQ,
+					      vendor = \"".$v."\"
 					      where styleID =" . $SI.";";
 
 
